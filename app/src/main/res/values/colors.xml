@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#352245</color>
+    <color name="colorPrimaryDark">#241630</color>
+    <color name="colorAccent">#800080</color>
+    <color name="purple">#800080</color>
+    <color name="main_color">#352245</color>
+    <color name="challenge_disabled">#C0C0C0</color>
+    <color name="challenge_enabled">#ff8c00</color>
+    <color name="white">#FFFFFF</color>
+    <color name="red">#FF0000</color>
+    <color name="white_trans">#99FFFFFF</color>
+
+</resources>

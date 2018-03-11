@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">SonsChallenge</string>
+
+    <string-array name="colors">
+        <item>#ff670729</item>
+        <item>#ff7a0c2d</item>
+        <item>#ff96092d</item>
+        <item>#ffa10a37</item>
+        <item>#ffbf013b</item>
+    </string-array>
+
+    <string name="title_activity_main2">Main2Activity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="bottom_item_devocionais">Devocionais</string>
+    <string name="bottom_item_desafios">Desafios</string>
+    <string name="bottom_item_configuracoes">Configurações</string>
+
+</resources>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Switch
+        android:id="@+id/switch_alarme_leitura"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:layout_marginLeft="10dp"
+        android:text="Alarme de leitura"
+        android:textSize="18dp"
+        android:layout_alignParentStart="true" />
+
+    <Switch
+        android:id="@+id/switch_notificacoes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="42dp"
+        android:checked="true"
+        android:text="Notificações diárias"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_below="@+id/et_alarme"
+        android:layout_alignStart="@+id/tv_help_notificacoes_diarias" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/switch_alarme_leitura"
+        android:layout_below="@+id/switch_alarme_leitura"
+        android:layout_marginTop="6dp" />
+
+    <EditText
+        android:id="@+id/et_alarme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="time"
+        android:layout_marginTop="7dp"
+        android:layout_below="@+id/textView4"
+        android:layout_alignStart="@+id/textView4" />
+
+    <TextView
+        android:id="@+id/tv_help_alarme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView4"
+        android:layout_toEndOf="@+id/textView4"
+        android:text="Configure um alarme para sua leitura" />
+
+    <TextView
+        android:id="@+id/tv_help_notificacoes_diarias"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/switch_notificacoes"
+        android:layout_marginTop="6dp"
+        android:layout_toEndOf="@+id/textView4"
+        android:text="Habilite nossas mensagens diárias aparecerem para você :D " />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_alarme"
+        android:layout_marginTop="7dp"
+        android:layout_toEndOf="@+id/textView4"
+        android:text="(Clique duas vezes)" />
+
+    <Button
+        android:id="@+id/bt_salvar_configuracoes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="30dp"
+        android:background="@color/colorAccent"
+        android:textColor="@android:color/white"
+        android:text="Salvar"
+        android:layout_toEndOf="@+id/textView4" />
+
+
+</RelativeLayout>

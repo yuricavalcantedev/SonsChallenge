@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/bottom_item_devocionais"
+        android:icon="@mipmap/ic_devocionais_main"
+        android:title="@string/bottom_item_devocionais"/>
+    <item
+        android:id="@+id/bottom_item_desafios"
+        android:icon="@mipmap/ic_desafios_main"
+        android:title="@string/bottom_item_desafios"/>
+    <item
+        android:id="@+id/bottom_item_configuracoes"
+        android:icon="@mipmap/ic_settings_main"
+        android:title="@string/bottom_item_configuracoes"/>
+</menu>

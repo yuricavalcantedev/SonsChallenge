@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="br.heavendevelopment.sonschallenge.CriarDevocional">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_criar_devocional"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_color"
+        android:minHeight="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Título:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_below="@+id/toolbar_criar_devocional"
+        android:layout_alignStart="@+id/view"
+        android:layout_marginTop="20dp" />
+
+    <EditText
+        android:id="@+id/et_titulo_devocional"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:layout_alignBaseline="@+id/textView"
+        android:layout_alignBottom="@+id/textView"
+        android:layout_alignEnd="@+id/view2"
+        android:layout_toEndOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dia:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_below="@+id/et_titulo_devocional"
+        android:layout_alignStart="@+id/textView"
+        android:layout_marginTop="9dp" />
+
+    <Spinner
+        android:id="@+id/spinner_dia_devocional"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/et_titulo_devocional"
+        android:layout_alignTop="@+id/textView3"
+        android:layout_alignEnd="@+id/et_titulo_devocional" />
+
+    <TextView
+        android:id="@+id/tv_aux_devocional"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:text="Devocional"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:layout_below="@+id/spinner_dia_devocional"
+        android:layout_centerHorizontal="true" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_margin="10dp"
+        android:background="@android:color/darker_gray"
+        android:layout_below="@+id/tv_aux_devocional"
+        android:id="@+id/view" />
+
+    <EditText
+        android:id="@+id/et_devocional"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/view"
+        android:layout_alignStart="@+id/view"
+        android:layout_below="@+id/view"
+        android:layout_marginTop="6dp"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:minLines="15" />
+
+    <Button
+        android:id="@+id/bt_salvar_devocional"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/et_devocional"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/et_devocional"
+        android:layout_marginBottom="21dp"
+        android:background="@color/colorAccent"
+        android:textColor="@color/white"
+        android:text="Salvar" />
+
+    <TextView
+        android:id="@+id/tvLabelDataDevocional"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:text="Data:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_below="@+id/spinner_dia_devocional"
+        android:layout_alignStart="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/tvDataDevocional"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tvLabelDataDevocional"
+        android:layout_alignStart="@+id/spinner_dia_devocional"
+        android:text="15/03/18"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:visibility="visible" />
+
+
+</RelativeLayout>
