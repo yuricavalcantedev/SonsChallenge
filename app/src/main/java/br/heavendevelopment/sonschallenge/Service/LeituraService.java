@@ -1,12 +1,10 @@
 package br.heavendevelopment.sonschallenge.Service;
 
-import com.activeandroid.query.Select;
+import android.content.Context;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
+
+import br.heavendevelopment.sonschallenge.DataBaseAccess.DatabaseAccess;
 import br.heavendevelopment.sonschallenge.Model.Leitura;
 
 /**
@@ -15,82 +13,46 @@ import br.heavendevelopment.sonschallenge.Model.Leitura;
 
 public class LeituraService {
 
-    public boolean salvarLeitura(Leitura leitura){
+    private Context context;
 
-        boolean salvou;
-
-        try{
-            leitura.save();
-            salvou = true;
-        }catch (Exception ex){
-            salvou = false;
-        }
-
-        return salvou;
+    public LeituraService(Context context){
+        this.context = context;
     }
 
-    public Leitura getLeitura(int dia){
+    public List<Leitura> getLeiturasPorMes(int mes){
 
-        return new Select()
-                .from(Leitura.class)
-                .where("dia = ?", dia)
-                .executeSingle();
+        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(context);
+        databaseAccess.open();
+
+        List<Leitura> leituraList = databaseAccess.getLeiturasPorMes(mes);
+
+        databaseAccess.close();
+
+        return leituraList;
     }
 
-    public List<Leitura> getAllLeituras() {
-        List<Leitura> x = new Select()
-                .from(Leitura.class)
-                .execute();
+    public Leitura getLeituraDia(int dia){
 
-        return x;
+        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(context);
+        databaseAccess.open();
+
+        Leitura leitura = databaseAccess.getLeituraDia(dia);
+
+        databaseAccess.close();
+
+        return leitura;
     }
 
-    public boolean deleteLeitura(Leitura leitura) {
+    public boolean setAtualizarLeituraDia(Leitura leitura){
 
-        boolean deletou;
+        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(context);
+        databaseAccess.open();
 
-        try{
-            leitura.delete();
-            deletou = true;
-        }catch (Exception ex){
-            deletou = false;
-        }
+        boolean atualizado = databaseAccess.setAtualizarLeituraDia(leitura);
 
-        return deletou;
+        databaseAccess.close();
 
-    }
-
-    public int getDiaAtual(){
-
-        GregorianCalendar gregorianCalendar = new GregorianCalendar();
-
-        int dia = gregorianCalendar.get(gregorianCalendar.DAY_OF_MONTH);
-        int mes = gregorianCalendar.get(gregorianCalendar.MONTH) + 1;
-        int ano = 2018;
-
-        String dataAtual = dia + "/" + mes + "/" + ano;
-
-        Leitura leitura = new Select()
-                .from(Leitura.class)
-                .where("data = ?", dataAtual)
-                .executeSingle();
-
-        return leitura.getDia();
-    }
-
-    public List<Integer> getDias(Leitura leitura) {
-
-        List<Integer> listaDias = new ArrayList<>();
-
-        List<Leitura> lista=
-                new Select()
-                .from(Leitura.class)
-                .execute();
-
-        for(int i = 0; i < 80; i++)
-            listaDias.add(i);
-
-        return listaDias;
+        return atualizado;
     }
 
 }

@@ -1,27 +1,31 @@
 package br.heavendevelopment.sonschallenge.Model;
 
-import com.activeandroid.Model;
-import com.activeandroid.annotation.Column;
-import com.activeandroid.annotation.Table;
-
 /**
  * Created by yuri on 09/03/18.
  */
 
-@Table(name = "Devocional")
-public class Devocional extends Model{
+public class Devocional {
 
-    @Column(name = "titulo")
-    private String titulo;
-
-    @Column(name = "dia")
-    private int dia;
-
-    @Column(name = "data")
+    private int id;
+    private int diaDesafio;
     private String data;
-
-    @Column(name = "textoDevocional")
+    private String titulo;
     private String textoDevocional;
+
+    public Devocional(int id, int diaDesafio, String data, String titulo, String textoDevocional) {
+        this.id = id;
+        this.titulo = titulo;
+        this.diaDesafio = diaDesafio;
+        this.data = data;
+        this.textoDevocional = textoDevocional;
+    }
+
+    public Devocional(int diaDesafio, String data, String titulo, String textoDevocional) {
+        this.titulo = titulo;
+        this.diaDesafio = diaDesafio;
+        this.data = data;
+        this.textoDevocional = textoDevocional;
+    }
 
     public Devocional(String titulo, String textoDevocional) {
         this.titulo = titulo;
@@ -29,6 +33,14 @@ public class Devocional extends Model{
     }
 
     public Devocional() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitulo() {
@@ -47,12 +59,12 @@ public class Devocional extends Model{
         this.textoDevocional = textoDevocional;
     }
 
-    public int getDia() {
-        return dia;
+    public int getDiaDesafio() {
+        return diaDesafio;
     }
 
-    public void setDia(int dia) {
-        this.dia = dia;
+    public void setDiaDesafio(int diaDesafio) {
+        this.diaDesafio = diaDesafio;
     }
 
     public String getData() {

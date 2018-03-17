@@ -1,6 +1,10 @@
 package br.heavendevelopment.sonschallenge;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -16,7 +20,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -28,40 +31,66 @@ import de.mrapp.android.bottomsheet.BottomSheet;
 
 public class CriarDevocional extends AppCompatActivity {
 
-
-    private int diaAtualEscolhido;
+    private int diaAtualEscolhido = 0;
     private EditText etTitulo;
     private Spinner spinnerDia;
     private EditText etDevocional;
-    private TextView tvDataDevocional;
     private Bundle bundleDevocional;
+    private Context context;
+    private int idDevocional;
+    private DevocionalService devocionalService;
+    private int flag = 0; //0 = criar devocional, 1 = atualizar devocional
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_criar_devocional);
 
+        context = this;
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_criar_devocional);
         toolbar.setTitle("Criar Devocional"); // ou o nome do devocional
+        toolbar.setTitleTextColor(Color.WHITE);
 
         spinnerDia = (Spinner) findViewById(R.id.spinner_dia_devocional);
-        tvDataDevocional = (TextView) findViewById(R.id.tvDataDevocional);
+        TextView tvDataDevocional = (TextView) findViewById(R.id.tvDataDevocional);
         etTitulo = (EditText) findViewById(R.id.et_titulo_devocional);
         etDevocional = (EditText) findViewById(R.id.et_devocional);
 
+        devocionalService = new DevocionalService(context);
+
+        List<String> spinnerArray = new ArrayList<>();
+        for(int i = 1; i <= 80; i++)
+            spinnerArray.add("Dia " +i );
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                CriarDevocional.this,
+                android.R.layout.simple_spinner_item,
+                spinnerArray
+        );
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // (4) set the adapter on the spinner
+        spinnerDia.setAdapter(adapter);
 
         bundleDevocional = getIntent().getExtras();
         if(bundleDevocional != null){
 
-            DevocionalService devocionalService = new DevocionalService();
-            int idDevocional = bundleDevocional.getInt("idDevocional");
+            idDevocional = bundleDevocional.getInt("idDevocional");
 
-            Devocional devocional = devocionalService.getDevocional(idDevocional);
+            Devocional devocional = devocionalService.getDevocionalById(idDevocional);
 
             tvDataDevocional.setText(devocional.getData());
             etTitulo.setText(devocional.getTitulo());
             etDevocional.setText(devocional.getTextoDevocional());
+            tvDataDevocional.setText(devocional.getData());
 
+            flag = 1;
+
+
+            //dou o "-1" para ele colocar o item correto.
+            spinnerDia.setSelection(devocional.getDiaDesafio() - 1);
         }else{
 
             GregorianCalendar gregorianCalendar = new GregorianCalendar();
@@ -70,38 +99,20 @@ public class CriarDevocional extends AppCompatActivity {
             int mes = gregorianCalendar.get(gregorianCalendar.MONTH) + 1;
             int ano = 2018;
 
-
+            spinnerDia.setSelection(diaAtualEscolhido);
 
             String dataHoje = dia + "/" + mes + "/" + ano;
             tvDataDevocional.setText(dataHoje);
 
-            List<String> spinnerArray = new ArrayList<>();
-            for(int i = 1; i <= 80; i++)
-                spinnerArray.add("Dia " +i );
-
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                    CriarDevocional.this,
-                    android.R.layout.simple_spinner_item,
-                    spinnerArray
-            );
-
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-            // (4) set the adapter on the spinner
-            spinnerDia.setAdapter(adapter);
-
         }
 
-        LeituraService leituraService = new LeituraService();
-        List<Leitura> x = leituraService.getAllLeituras(); //dia que o usuário está
-
-//        spinnerDia.setPromptId(diaAtual);
+        LeituraService leituraService = new LeituraService(context);
 
         spinnerDia.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                diaAtualEscolhido = position+1;
+                diaAtualEscolhido = position;
 
             }
 
@@ -122,17 +133,23 @@ public class CriarDevocional extends AppCompatActivity {
                 etTitulo = (EditText) findViewById(R.id.et_titulo_devocional);
                 spinnerDia = (Spinner) findViewById(R.id.spinner_dia_devocional);
                 etDevocional = (EditText) findViewById(R.id.et_devocional);
+                TextView tvDataDevocional = (TextView) findViewById(R.id.tvDataDevocional);
 
                 String titulo = etTitulo.getText().toString();
                 String textoDevocional = etDevocional.getText().toString();
+                String data = tvDataDevocional.getText().toString();
 
-                Devocional devocional = new Devocional(titulo,textoDevocional);
-                devocional.setDia(diaAtualEscolhido);
+                Devocional devocional = new Devocional(diaAtualEscolhido+1,data,titulo,textoDevocional);
 
-                DevocionalService devocionalService = new DevocionalService();
-                devocionalService.salvarDevocional(devocional);
+                if(flag == 0) {
+                    devocionalService.criarDevocional(devocional);
+                    Toast.makeText(CriarDevocional.this, "Devocional Salvo!", Toast.LENGTH_SHORT).show();
+                }else {
+                    devocional.setId(idDevocional);
+                    devocionalService.atualizarDevocional(devocional);
+                    Toast.makeText(CriarDevocional.this, "Devocional Atualizado!", Toast.LENGTH_SHORT).show();
+                }
 
-                Toast.makeText(CriarDevocional.this, "Devocional Salvo!", Toast.LENGTH_SHORT).show();
                 finish();
 
             }
@@ -171,10 +188,6 @@ public class CriarDevocional extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void deletarDevocional(){
-
-    }
-
     private void compartilharDevocional(){
 
         etTitulo = (EditText) findViewById(R.id.et_titulo_devocional);
@@ -186,8 +199,8 @@ public class CriarDevocional extends AppCompatActivity {
         String titulo = etTitulo.getText().toString();
         String devocional = etDevocional.getText().toString();
 
-        String textoCompartilhar = "Son's Challenge - Closer \n\n"; // mudar o desafio depois.
-        textoCompartilhar += "Devocional - " + titulo+ " \n";
+        String textoCompartilhar = "Son's Challenge - Closer \n"; // mudar o desafio depois.
+        textoCompartilhar += "Devocional - " + titulo+ " \n\n";
         textoCompartilhar += devocional;
 
         BottomSheet.Builder builder = new BottomSheet.Builder(this);
@@ -203,5 +216,37 @@ public class CriarDevocional extends AppCompatActivity {
         BottomSheet bottomSheet = builder.create();
         bottomSheet.show();
 
+    }
+
+    private void deletarDevocional(){
+
+
+        //pego o devocional completo por causa do titulo
+        final Devocional devocionalExcluir = devocionalService.getDevocionalById(idDevocional);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context)
+                .setTitle("Excluir Devocional")
+                .setMessage("Você realmente deseja excluir o devocional : " + devocionalExcluir.getTitulo())
+                .setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .setPositiveButton("Excluir", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        dialog.dismiss();
+                        devocionalService.deletarDevocional(idDevocional);
+
+                        Toast.makeText(context, "Devocional excluído com sucesso", Toast.LENGTH_SHORT).show();
+
+                        finish();
+                    }
+                });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }

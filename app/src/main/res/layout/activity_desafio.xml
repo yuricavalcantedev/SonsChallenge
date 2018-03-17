@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.imangazaliev.circlemenu.CircleMenu
+        android:id="@+id/circle_menu_multiple_border"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        app:hintsEnabled="true"
+        app:multiple_check="true"
+        app:alpha_check="false"
+        app:border_check="true"
+        app:center_drawable="@mipmap/ic_desafios_main"
+        app:confirmation_center_drawable="@mipmap/ic_desafios_main">
+    </com.imangazaliev.circlemenu.CircleMenu>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/circle_menu_multiple_border"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="33dp"
+        android:text="Son's Challenge - Closer"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/circle_menu_multiple_border"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp"
+        android:text="Porcentagem concluída : 25%" />
+
+</RelativeLayout>

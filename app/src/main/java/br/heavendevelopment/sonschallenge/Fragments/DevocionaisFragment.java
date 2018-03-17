@@ -14,8 +14,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import br.heavendevelopment.sonschallenge.CriarDevocional;
-import br.heavendevelopment.sonschallenge.DevocionaisAdapter;
-import br.heavendevelopment.sonschallenge.MainActivity;
+import br.heavendevelopment.sonschallenge.Adapters.DevocionaisAdapter;
 import br.heavendevelopment.sonschallenge.Model.Devocional;
 import br.heavendevelopment.sonschallenge.R;
 import br.heavendevelopment.sonschallenge.Service.DevocionalService;
@@ -23,7 +22,9 @@ import br.heavendevelopment.sonschallenge.Service.DevocionalService;
 public class DevocionaisFragment extends Fragment {
 
     private ListView lvDevocionaisMain;
-
+    private List<Devocional> devocionalList;
+    private DevocionaisAdapter devocionaisAdapter;
+    private View view;
     public static DevocionaisFragment newInstance() {
 
         DevocionaisFragment fragment = new DevocionaisFragment();
@@ -38,12 +39,11 @@ public class DevocionaisFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_devocionais, container, false);
+        view = inflater.inflate(R.layout.fragment_devocionais, container, false);
 
         lvDevocionaisMain = (ListView) view.findViewById(R.id.lv_devocionais_main);
 
-        DevocionalService devocionalService = new DevocionalService();
-        List<Devocional> devocionalList = devocionalService.getAllDevocionais();
+        fillListViewDevocionais(view);
 
         TextView tvMsgDevocional = (TextView) view.findViewById(R.id.tv_msgDevocional_naoCriado);
         TextView tvMsgEspirito = (TextView) view.findViewById(R.id.tv_msgDevocional_guiadoPeloEspirito);
@@ -60,17 +60,15 @@ public class DevocionaisFragment extends Fragment {
 
         }
 
-        DevocionaisAdapter devocionaisAdapter = new DevocionaisAdapter(getContext(),devocionalList);
-
-        lvDevocionaisMain.setAdapter(devocionaisAdapter);
-
         lvDevocionaisMain.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 TextView tvId = (TextView) view.findViewById(R.id.tv_id_item_devocional);
 
-                int idDevocional = Integer.parseInt(tvId.getText().toString());
+                String aux = tvId.getText().toString();
+                String x [] = aux.split("a");
+                int idDevocional = Integer.parseInt(x[1]);
 
                 Bundle bundle = new Bundle();
                 bundle.putInt("idDevocional",idDevocional);
@@ -93,4 +91,34 @@ public class DevocionaisFragment extends Fragment {
 
         return view;
     }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        fillListViewDevocionais(view);
+    }
+
+
+    private void fillListViewDevocionais(View view){
+
+        DevocionalService devocionalService = new DevocionalService(getContext());
+
+        devocionalList = devocionalService.getDevocionais();
+        TextView tvmsgGuiadoEspirito= (TextView) view.findViewById(R.id.tv_msgDevocional_guiadoPeloEspirito);
+        TextView tvMsgNaoCriado = (TextView) view.findViewById(R.id.tv_msgDevocional_naoCriado);
+
+        if(devocionalList.size() == 0) {
+            tvmsgGuiadoEspirito.setVisibility(View.VISIBLE);
+            tvMsgNaoCriado.setVisibility(View.VISIBLE);
+        }else {
+            tvmsgGuiadoEspirito.setVisibility(View.INVISIBLE);
+            tvMsgNaoCriado.setVisibility(View.INVISIBLE);
+        }
+
+        devocionaisAdapter = new DevocionaisAdapter(getContext(),devocionalList);
+        lvDevocionaisMain.setAdapter(devocionaisAdapter);
+
+    }
+
 }

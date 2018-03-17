@@ -1,8 +1,9 @@
-package br.heavendevelopment.sonschallenge;
+package br.heavendevelopment.sonschallenge.Model;
 
 /**
  * Created by yuri on 23/02/18.
  */
+
 
 public class Desafio {
 

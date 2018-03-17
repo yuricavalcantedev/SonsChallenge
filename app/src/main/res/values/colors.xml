@@ -11,4 +11,10 @@
     <color name="red">#FF0000</color>
     <color name="white_trans">#99FFFFFF</color>
 
+    <array name="colors">
+        <item>#99FFFFFF</item>
+        <item>#99FFFFFF</item>
+        <item>#99FFFFFF</item>
+    </array>
+
 </resources>

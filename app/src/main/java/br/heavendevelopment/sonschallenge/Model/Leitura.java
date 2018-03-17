@@ -1,48 +1,37 @@
 package br.heavendevelopment.sonschallenge.Model;
 
-import com.activeandroid.Model;
-import com.activeandroid.annotation.Column;
-import com.activeandroid.annotation.Table;
-
 /**
  * Created by yuri on 09/03/18.
  */
 
-@Table(name = "Leitura")
-public class Leitura extends Model{
+public class Leitura {
 
-    @Column(name = "data")
-    private String data;
 
-    @Column(name = "dia")
+    //desafio: 0 - não existe, 1 - acordar de hora em hora, 2 - frase, texto, 3 - ligação, 7 - realizado
+    private int id;
+    private int mes;
     private int dia;
-
-    @Column(name = "semana")
-    private int semana;
-
-    @Column(name = "leitura")
-    private boolean leitura;
-
-    @Column(name = "oracao")
-    private boolean oracao;
-
-    @Column(name = "desafio")
-    private boolean desafio;
-
-    @Column(name = "referencia")
+    private String data;
+    private int leitura;
+    private int oracao;
+    private int desafio;
     private String referencia;
+    private String mensagem;
 
     public Leitura() {
     }
 
-    public Leitura(String data, int dia, boolean leitura, boolean oracao, boolean desafio, String referencia) {
+    public Leitura(int id, int mes, int dia, String data, int leitura, int oracao, int desafio, String referencia, String mensagem) {
 
+        this.id = id;
         this.data = data;
+        this.mes = mes;
         this.dia = dia;
         this.leitura = leitura;
         this.oracao = oracao;
         this.desafio = desafio;
         this.referencia = referencia;
+        this.mensagem = mensagem;
     }
 
     public String getData() {
@@ -53,6 +42,14 @@ public class Leitura extends Model{
         this.data = data;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public int getDia() {
         return dia;
     }
@@ -61,35 +58,35 @@ public class Leitura extends Model{
         this.dia = dia;
     }
 
-    public int getSemana() {
-        return semana;
+    public int getMes() {
+        return mes;
     }
 
-    public void setSemana(int semana) {
-        this.semana = semana;
+    public void setMes(int mes) {
+        this.mes = mes;
     }
 
-    public boolean isLeitura() {
+    public int getLeitura() {
         return leitura;
     }
 
-    public void setLeitura(boolean leitura) {
+    public void setLeitura(int leitura) {
         this.leitura = leitura;
     }
 
-    public boolean isOracao() {
+    public int getOracao() {
         return oracao;
     }
 
-    public void setOracao(boolean oracao) {
+    public void setOracao(int oracao) {
         this.oracao = oracao;
     }
 
-    public boolean isDesafio() {
+    public int getDesafio() {
         return desafio;
     }
 
-    public void setDesafio(boolean desafio) {
+    public void setDesafio(int desafio) {
         this.desafio = desafio;
     }
 
@@ -99,5 +96,13 @@ public class Leitura extends Model{
 
     public void setReferencia(String referencia) {
         this.referencia = referencia;
+    }
+
+    public String getMensagem() {
+        return mensagem;
+    }
+
+    public void setMensagem(String mensagem) {
+        this.mensagem = mensagem;
     }
 }

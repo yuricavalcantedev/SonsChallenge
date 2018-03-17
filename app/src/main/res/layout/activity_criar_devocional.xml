@@ -36,7 +36,6 @@
         android:inputType="textPersonName"
         android:layout_alignBaseline="@+id/textView"
         android:layout_alignBottom="@+id/textView"
-        android:layout_alignEnd="@+id/view2"
         android:layout_toEndOf="@+id/textView" />
 
     <TextView

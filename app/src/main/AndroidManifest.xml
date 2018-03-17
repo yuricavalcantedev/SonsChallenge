@@ -4,14 +4,14 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_soch_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_soch_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".SplashScreen"
             android:theme="@style/AppTheme.NoActionBar">
@@ -22,8 +22,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".DesafioActivity" />
-        <activity android:name=".CriarDevocional"
-                  android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".CriarDevocional"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <meta-data
             android:name="AA_DB_NAME"
@@ -35,9 +36,10 @@
             android:name="AA_MODELS"
             android:value="br.heavendevelopment.sonschallenge.Model.Devocional, br.heavendevelopment.sonschallenge.Model.Leitura" />
 
-        <activity android:name=".Fragments.DesafiosFragment" />
-        <activity android:name=".Fragments.DevocionaisFragment" />
-        <activity android:name=".Fragments.ConfiguracoesFragment"></activity>
+        <activity android:name=".DesafiosListActivity" />
+
+        <activity android:name=".VerDiaLeituraActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

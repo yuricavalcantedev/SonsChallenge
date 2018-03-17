@@ -1,69 +1,83 @@
 package br.heavendevelopment.sonschallenge.Service;
 
-import com.activeandroid.query.Select;
+import android.content.Context;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
 
+import br.heavendevelopment.sonschallenge.DataBaseAccess.DatabaseAccess;
 import br.heavendevelopment.sonschallenge.Model.Devocional;
 
 /**
- * Created by yuri on 09/03/18.
+ * Created by Yuri on 22/11/2016.
  */
 
 public class DevocionalService {
 
-    public boolean salvarDevocional(Devocional devocional){
+    private Context context;
 
-        boolean salvou;
-
-        GregorianCalendar gregorianCalendar = new GregorianCalendar();
-
-        int dia = gregorianCalendar.get(gregorianCalendar.DAY_OF_MONTH);
-        int mes = gregorianCalendar.get(gregorianCalendar.MONTH) + 1;
-        int ano = 2018;
-
-
-        devocional.setData(dia + "/" + mes + "/" + ano);
-
-        try{
-            devocional.save();
-            salvou = true;
-        }catch (Exception ex){
-            salvou = false;
-        }
-
-        return salvou;
+    public DevocionalService(Context context){
+        super();
+        this.context = context;
     }
 
-    public Devocional getDevocional(int id){
+    public boolean criarDevocional(Devocional devocional){
 
-        return new Select()
-                .from(Devocional.class)
-                .where("id= ?", id)
-                .executeSingle();
+        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(context);
+        databaseAccess.open();
+
+        boolean cadastrado = databaseAccess.cadastrarDevocional(devocional);
+
+        databaseAccess.close();
+
+        return cadastrado;
+
     }
 
-    public List<Devocional> getAllDevocionais() {
-        return new Select()
-                .from(Devocional.class)
-                .execute();
+    public List<Devocional> getDevocionais(){
+
+        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(context);
+        databaseAccess.open();
+
+        List<Devocional> listaDevocionais = databaseAccess.getDevocionais();
+
+        databaseAccess.close();
+
+        return listaDevocionais;
     }
 
-    public boolean deleteDevocional(Devocional devocional) {
+    public Devocional getDevocionalById(int idDevocional){
 
-        boolean deletou;
+        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(context);
+        databaseAccess.open();
 
-        try{
-            devocional.delete();
-            deletou = true;
-        }catch (Exception ex){
-            deletou = false;
-        }
+        Devocional devocional = databaseAccess.getDevocionalById(idDevocional);
 
-        return deletou;
+        databaseAccess.close();
 
+        return devocional;
+    }
+
+    public boolean atualizarDevocional(Devocional devocional){
+
+        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(context);
+        databaseAccess.open();
+
+        boolean devocionalAtualizado = databaseAccess.atualizarDevocional(devocional);
+
+        databaseAccess.close();
+        return devocionalAtualizado;
+    }
+
+    public boolean deletarDevocional(int idDevocional){
+
+        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(context);
+        databaseAccess.open();
+
+        boolean deletado = databaseAccess.deletarDevocional(idDevocional);
+
+        databaseAccess.close();
+
+        return deletado;
     }
 
 }

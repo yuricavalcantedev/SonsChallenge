@@ -1,4 +1,4 @@
-package br.heavendevelopment.sonschallenge;
+package br.heavendevelopment.sonschallenge.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,10 +7,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import br.heavendevelopment.sonschallenge.Model.Devocional;
+import br.heavendevelopment.sonschallenge.R;
 
 /**
  * Created by yuri on 23/02/18.
@@ -22,7 +22,6 @@ public class DevocionaisAdapter extends BaseAdapter {
     private List<Devocional> devocionalList;
 
     public DevocionaisAdapter(Context context, List<Devocional> devocionalList){
-
         this.context = context;
         this.devocionalList = devocionalList;
     }
@@ -62,9 +61,9 @@ public class DevocionaisAdapter extends BaseAdapter {
         Devocional devocional = devocionalList.get(position);
 
         holder.tvTituloDevocional.setText(devocional.getTitulo());
-        holder.tvDiaDevocional.setText(String.valueOf(devocional.getDia()));
+        holder.tvDiaDevocional.setText("Dia " + String.valueOf(devocional.getDiaDesafio()));
         holder.tvDataDevocional.setText(devocional.getData());
-        holder.tvIdDevocional.setText(devocional.getId()+"");
+        holder.tvIdDevocional.setText("Dia" + devocional.getId()+"");
 
         return view;
     }
