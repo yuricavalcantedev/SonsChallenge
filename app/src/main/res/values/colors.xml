@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#352245</color>
+    <color name="colorSecondary">#ff5a4f</color>
     <color name="colorPrimaryDark">#241630</color>
     <color name="colorAccent">#800080</color>
     <color name="purple">#800080</color>

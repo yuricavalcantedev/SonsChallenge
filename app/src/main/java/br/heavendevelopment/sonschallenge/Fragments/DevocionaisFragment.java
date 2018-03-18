@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import br.heavendevelopment.sonschallenge.CriarDevocional;
+import br.heavendevelopment.sonschallenge.Activity.CriarDevocional;
 import br.heavendevelopment.sonschallenge.Adapters.DevocionaisAdapter;
 import br.heavendevelopment.sonschallenge.Model.Devocional;
 import br.heavendevelopment.sonschallenge.R;

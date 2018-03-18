@@ -10,10 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".Activity.MainActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".SplashScreen"
+            android:name=".Activity.SplashScreen"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,9 +21,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DesafioActivity" />
+        <activity android:name=".Activity.DesafioActivity" />
         <activity
-            android:name=".CriarDevocional"
+            android:name=".Activity.CriarDevocional"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <meta-data
@@ -36,10 +36,11 @@
             android:name="AA_MODELS"
             android:value="br.heavendevelopment.sonschallenge.Model.Devocional, br.heavendevelopment.sonschallenge.Model.Leitura" />
 
-        <activity android:name=".DesafiosListActivity" />
-
-        <activity android:name=".VerDiaLeituraActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Activity.DesafiosListActivity" />
+        <activity
+            android:name=".Activity.VerDiaLeituraActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

@@ -55,4 +55,16 @@ public class LeituraService {
         return atualizado;
     }
 
+    public double getPorCentagemDesafio(){
+
+        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(context);
+        databaseAccess.open();
+
+        double porcentagem = databaseAccess.getPorCentagemDesafio();
+
+        databaseAccess.close();
+
+        return porcentagem ;
+
+    }
 }

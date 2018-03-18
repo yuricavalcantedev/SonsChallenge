@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
 
     <com.imangazaliev.circlemenu.CircleMenu
         android:id="@+id/circle_menu_multiple_border"
@@ -14,8 +15,8 @@
         app:multiple_check="true"
         app:alpha_check="false"
         app:border_check="true"
-        app:center_drawable="@mipmap/ic_desafios_main"
-        app:confirmation_center_drawable="@mipmap/ic_desafios_main">
+        app:center_drawable="@drawable/ic_menu_desafio"
+        app:confirmation_center_drawable="@drawable/ic_menu_desafio">
     </com.imangazaliev.circlemenu.CircleMenu>
 
     <TextView
@@ -25,16 +26,19 @@
         android:layout_above="@+id/circle_menu_multiple_border"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="33dp"
+        android:textColor="@color/colorSecondary"
         android:text="Son's Challenge - Closer"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/tv_desafioPorcentagem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/circle_menu_multiple_border"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="35dp"
-        android:text="Porcentagem concluída : 25%" />
+        android:textColor="@color/colorSecondary"
+        android:text="Porcentagem concluída : 25%"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
 </RelativeLayout>

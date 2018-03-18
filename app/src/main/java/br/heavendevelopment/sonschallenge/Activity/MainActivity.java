@@ -1,4 +1,4 @@
-package br.heavendevelopment.sonschallenge;
+package br.heavendevelopment.sonschallenge.Activity;
 
 
 import android.support.annotation.NonNull;
@@ -8,10 +8,14 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.valdesekamdem.library.mdtoast.MDToast;
 
 import br.heavendevelopment.sonschallenge.Fragments.ConfiguracoesFragment;
 import br.heavendevelopment.sonschallenge.Fragments.DesafiosFragment;
 import br.heavendevelopment.sonschallenge.Fragments.DevocionaisFragment;
+import br.heavendevelopment.sonschallenge.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -51,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_layout, DesafiosFragment.newInstance());
         transaction.commit();
+
+        MDToast.makeText(getBaseContext(),"Você é tão especial para mim!", Toast.LENGTH_LONG,MDToast.TYPE_INFO).show();
 
         //Used to select an item programmatically
         bottomNavigationView.getMenu().getItem(1).setChecked(true);

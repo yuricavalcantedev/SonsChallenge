@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 import java.util.Calendar;
 
-import br.heavendevelopment.sonschallenge.MainActivity;
 import br.heavendevelopment.sonschallenge.R;
 
 import static android.content.Context.MODE_PRIVATE;

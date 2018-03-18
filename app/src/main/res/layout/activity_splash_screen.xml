@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="br.heavendevelopment.sonschallenge.SplashScreen"
+    tools:context="br.heavendevelopment.sonschallenge.Activity.SplashScreen"
     android:background="#352245"
     tools:layout_editor_absoluteY="81dp"
     tools:layout_editor_absoluteX="0dp">
@@ -35,7 +35,7 @@
             app:wlv_shapeType="circle"
             app:wlv_triangle_direction="north"
             app:wlv_waveAmplitude="25"
-            app:wlv_waveColor="@color/white" />
+            app:wlv_waveColor="@color/colorSecondary" />
 
     </RelativeLayout>
 

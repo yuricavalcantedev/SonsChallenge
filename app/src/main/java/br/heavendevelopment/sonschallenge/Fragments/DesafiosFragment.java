@@ -8,8 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import br.heavendevelopment.sonschallenge.DesafioActivity;
+import com.valdesekamdem.library.mdtoast.MDToast;
+
+import br.heavendevelopment.sonschallenge.Activity.DesafioActivity;
 import br.heavendevelopment.sonschallenge.R;
+
+import static com.valdesekamdem.library.mdtoast.MDToast.LENGTH_LONG;
+import static com.valdesekamdem.library.mdtoast.MDToast.TYPE_INFO;
+import static com.valdesekamdem.library.mdtoast.MDToast.TYPE_SUCCESS;
 
 public class DesafiosFragment extends Fragment {
 
@@ -36,6 +42,26 @@ public class DesafiosFragment extends Fragment {
                 startActivity(new Intent(getContext(), DesafioActivity.class));
             }
         });
+
+        TextView tv40dias= (TextView) view.findViewById(R.id.tv_desafio_40dias);
+        tv40dias.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MDToast mdToast = MDToast.makeText(getContext(), "Desafio indisponível no momento", LENGTH_LONG, TYPE_INFO);
+                mdToast.show();
+            }
+        });
+
+
+        TextView tvDeeper = (TextView) view.findViewById(R.id.tv_desafio_deeper);
+        tvDeeper.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MDToast mdToast = MDToast.makeText(getContext(), "Desafio indisponível no momento", LENGTH_LONG, TYPE_INFO);
+                mdToast.show();
+            }
+        });
+
 
         return view;
     }

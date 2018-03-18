@@ -1,4 +1,4 @@
-package br.heavendevelopment.sonschallenge;
+package br.heavendevelopment.sonschallenge.Activity;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -24,7 +24,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 import br.heavendevelopment.sonschallenge.Model.Devocional;
-import br.heavendevelopment.sonschallenge.Model.Leitura;
+import br.heavendevelopment.sonschallenge.R;
 import br.heavendevelopment.sonschallenge.Service.DevocionalService;
 import br.heavendevelopment.sonschallenge.Service.LeituraService;
 import de.mrapp.android.bottomsheet.BottomSheet;

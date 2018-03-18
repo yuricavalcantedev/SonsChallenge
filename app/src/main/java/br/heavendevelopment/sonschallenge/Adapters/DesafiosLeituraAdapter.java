@@ -75,11 +75,11 @@ public class DesafiosLeituraAdapter extends BaseAdapter{
 
     private boolean statusLeitura(Leitura leitura){
 
-        boolean status = false;
+        boolean status;
 
         if(leitura.getDesafio() == 0){
 
-            if(leitura.getOracao() == 1 && leitura.getDesafio() == 1){
+            if(leitura.getOracao() == 1 && leitura.getLeitura() == 1){
 
                 status = true;
             }else{
@@ -88,7 +88,7 @@ public class DesafiosLeituraAdapter extends BaseAdapter{
             }
         }else{ //se não é 0, é porque esse dia tem desafio
 
-            if(leitura.getOracao() == 1 && leitura.getDesafio() == 1 && leitura.getDesafio() == 7){
+            if(leitura.getOracao() == 1 && leitura.getLeitura() == 1 && leitura.getDesafio() == 7){
 
                 status = true;
             }else{

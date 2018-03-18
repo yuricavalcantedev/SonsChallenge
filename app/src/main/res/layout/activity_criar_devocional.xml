@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="br.heavendevelopment.sonschallenge.CriarDevocional">
+    tools:context="br.heavendevelopment.sonschallenge.Activity.CriarDevocional">
 
 
     <android.support.v7.widget.Toolbar
