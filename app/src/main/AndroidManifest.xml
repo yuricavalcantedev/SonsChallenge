@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.heavendevelopment.sonschallenge">
 
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_soch_launcher"
@@ -9,6 +13,7 @@
         android:roundIcon="@mipmap/ic_soch_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".Activity.MainActivity"
             android:theme="@style/AppTheme" />
@@ -41,6 +46,14 @@
             android:name=".Activity.VerDiaLeituraActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+
+        <receiver android:name=".Alarm.AlarmReceiver" android:enabled="false">
+            <intent-filter><action android:name="android.intent.action.BOOT_COMPLETED"/></intent-filter>
+        </receiver>
+
+        <receiver android:name=".Alarm.AlarmReceiverTuesdayChallenge" android:enabled="false">
+            <intent-filter><action android:name="android.intent.action.BOOT_COMPLETED"/></intent-filter>
+        </receiver>
     </application>
 
 </manifest>

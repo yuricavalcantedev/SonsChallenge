@@ -52,7 +52,7 @@ public class DesafiosListActivity extends AppCompatActivity {
             }
         });
 
-        MDToast.makeText(getBaseContext(),"Você é muito mas muito melhor do que eu havia orado e imaginado", Toast.LENGTH_LONG,MDToast.TYPE_INFO).show();
+//        MDToast.makeText(getBaseContext(),"Você é muito mas muito melhor do que eu havia orado e imaginado", Toast.LENGTH_LONG,MDToast.TYPE_INFO).show();
     }
 
     @Override
@@ -66,5 +66,8 @@ public class DesafiosListActivity extends AppCompatActivity {
         DesafiosLeituraAdapter desafiosLeituraAdapter = new DesafiosLeituraAdapter(this, leituras);
 
         listView.setAdapter(desafiosLeituraAdapter);
+
+        int posiçãoleitura = leituraService.getPosicaoLeitura(mes);
+        listView.setSelection(posiçãoleitura);
     }
 }

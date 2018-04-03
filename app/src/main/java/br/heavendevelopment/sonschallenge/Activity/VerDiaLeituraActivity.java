@@ -20,6 +20,7 @@ import br.heavendevelopment.sonschallenge.R;
 import br.heavendevelopment.sonschallenge.Service.LeituraService;
 
 import static com.valdesekamdem.library.mdtoast.MDToast.LENGTH_LONG;
+import static com.valdesekamdem.library.mdtoast.MDToast.LENGTH_SHORT;
 import static com.valdesekamdem.library.mdtoast.MDToast.TYPE_SUCCESS;
 
 public class VerDiaLeituraActivity extends AppCompatActivity {
@@ -35,7 +36,7 @@ public class VerDiaLeituraActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ver_dia_leitura);
 
-        MDToast.makeText(getBaseContext(),"Eu te amo e quero cuidar de você, amar você, proteger você e principalmente te levar para mais perto de Jesus pelo resto da minha vida!", Toast.LENGTH_LONG,MDToast.TYPE_INFO).show();
+//        MDToast.makeText(getBaseContext(),"Eu te amo e quero cuidar de você, amar você, proteger você e principalmente te levar para mais perto de Jesus pelo resto da minha vida!", Toast.LENGTH_LONG,MDToast.TYPE_INFO).show();
 
         context = this;
 
@@ -89,21 +90,22 @@ public class VerDiaLeituraActivity extends AppCompatActivity {
         cbDesafio.setChecked(desafioRealizado);
 
         if(desafioLeitura == 1)
-            cbDesafio.setText("Demonstrar seu amor ao Espírito Santo de hora em hora.");
+            cbDesafio.setText("Demonstrar seu amor ao Espírito Santo de hora em hora");
         else if(desafioLeitura == 2)
-            cbDesafio.setText("Compartilhar texto e/ou frase.");
+            cbDesafio.setText("Compartilhar texto e/ou frase");
         else if(desafioLeitura == 3)
-            cbDesafio.setText("Ligar para alguma pessoa.");
+            cbDesafio.setText("Ligar para alguma pessoa");
 
 
         tvMsg.setText(leitura.getMensagem());
+        cbLeitura.setText(leitura.getReferencia());
 
         cbLeitura.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
                 if(todosChecked()){
-                    MDToast mdToast = MDToast.makeText(context, "Parabéns! Dia completado", LENGTH_LONG, TYPE_SUCCESS);
+                    MDToast mdToast = MDToast.makeText(context, "Parabéns! Dia completado", LENGTH_SHORT, TYPE_SUCCESS);
                     mdToast.show();
                 }
             }
@@ -114,7 +116,7 @@ public class VerDiaLeituraActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
                 if(todosChecked()){
-                    MDToast mdToast = MDToast.makeText(context, "Parabéns! Dia completado", LENGTH_LONG, TYPE_SUCCESS);
+                    MDToast mdToast = MDToast.makeText(context, "Parabéns! Dia completado", LENGTH_SHORT, TYPE_SUCCESS);
                     mdToast.show();
                 }
             }
@@ -125,7 +127,7 @@ public class VerDiaLeituraActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
                 if(todosChecked()){
-                    MDToast mdToast = MDToast.makeText(context, "Parabéns! Dia completado", LENGTH_LONG, TYPE_SUCCESS);
+                    MDToast mdToast = MDToast.makeText(context, "Parabéns! Dia completado", LENGTH_SHORT, TYPE_SUCCESS);
                     mdToast.show();
                 }
             }

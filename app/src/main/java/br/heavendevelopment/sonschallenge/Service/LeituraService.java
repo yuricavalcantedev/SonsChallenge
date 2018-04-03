@@ -67,4 +67,46 @@ public class LeituraService {
         return porcentagem ;
 
     }
+
+    public  boolean checkUpdateDesafios(){
+
+
+        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(context);
+        databaseAccess.open();
+
+        boolean updated = databaseAccess.checkUpdateDesafios();
+
+        databaseAccess.close();
+
+        return updated;
+
+    }
+
+    public boolean updateDesafios(){
+
+        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(context);
+        databaseAccess.open();
+
+        boolean updated = databaseAccess.updateDesafios();
+
+        databaseAccess.close();
+
+        return updated ;
+
+    }
+
+    public int getPosicaoLeitura(int mes){
+
+        int posicaoDiaLeitura = 0;
+
+        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(context);
+        databaseAccess.open();
+
+        posicaoDiaLeitura = databaseAccess.getPosicaoLeitura(mes);
+
+        databaseAccess.close();
+
+        return posicaoDiaLeitura;
+    }
+
 }

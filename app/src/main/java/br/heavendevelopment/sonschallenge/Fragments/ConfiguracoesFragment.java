@@ -1,7 +1,10 @@
 package br.heavendevelopment.sonschallenge.Fragments;
 
+import android.annotation.TargetApi;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,13 +18,26 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import java.util.Calendar;
+import com.valdesekamdem.library.mdtoast.MDToast;
 
+import java.util.Calendar;
+import java.util.Locale;
+
+import br.heavendevelopment.sonschallenge.Alarm.AlarmReceiver;
+import br.heavendevelopment.sonschallenge.Alarm.AlarmReceiverTuesdayChallenge;
+import br.heavendevelopment.sonschallenge.Alarm.NotificationScheduler;
 import br.heavendevelopment.sonschallenge.R;
 
 import static android.content.Context.MODE_PRIVATE;
 
+
+
 public class ConfiguracoesFragment extends Fragment {
+
+    private EditText etAlarme;
+    private TextView tvHelpAlarme;
+    private TextView tvHelpNotificacoes;
+    private Context context;
 
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -42,23 +58,23 @@ public class ConfiguracoesFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_configuracoes, container, false);
 
-
+        context = getContext();
         sharedPreferences = getContext().getSharedPreferences("preferencesMain",MODE_PRIVATE);
 
 
-        Switch switchAlarmeLeitura = (Switch) view.findViewById(R.id.switch_alarme_leitura);
-        Switch switchNotificacoes = (Switch) view.findViewById(R.id.switch_notificacoes);
+        final Switch switchAlarmeLeitura = (Switch) view.findViewById(R.id.switch_alarme_leitura);
+        final Switch switchDesafioTerca = (Switch) view.findViewById(R.id.switch_desafio_terca);
         Button btSalvarConfig = (Button) view.findViewById(R.id.bt_salvar_configuracoes);
-        final EditText etAlarme = (EditText) view.findViewById(R.id.et_alarme);
-        final TextView tvHelpAlarme = (TextView) view.findViewById(R.id.tv_help_alarme);
-        final TextView tvHelpNotificacoes = (TextView) view.findViewById(R.id.tv_help_notificacoes_diarias);
+        etAlarme = (EditText) view.findViewById(R.id.et_alarme);
+        tvHelpAlarme = (TextView) view.findViewById(R.id.tv_help_alarme);
+        tvHelpNotificacoes = (TextView) view.findViewById(R.id.tv_help_notificacoes_diarias);
 
-        boolean alarmeLigado = sharedPreferences.getBoolean("alarmeLigado",true);
-        boolean notificacoesLigadas = sharedPreferences.getBoolean("notificacoesLigadas",true);
+        boolean alarmeLigado = sharedPreferences.getBoolean("alarmeLeitura",true);
+        boolean notificacoesLigadas = sharedPreferences.getBoolean("alarmeDesafioTerca",true);
         String alarme = sharedPreferences.getString("alarme","07:00");
 
         switchAlarmeLeitura.setChecked(alarmeLigado);
-        switchNotificacoes.setChecked(notificacoesLigadas);
+        switchDesafioTerca.setChecked(notificacoesLigadas);
         etAlarme.setText(alarme);
 
         if(alarmeLigado){
@@ -71,9 +87,9 @@ public class ConfiguracoesFragment extends Fragment {
         }
 
         if(notificacoesLigadas)
-            tvHelpNotificacoes.setText("Habilite nossas mensagens diárias aparecerem para você :D ");
+            tvHelpNotificacoes.setText("Vamos lembrar você de dizer quanto o Espírito Santo é lindão! :D ");
         else
-            tvHelpNotificacoes.setText("Não quer ver nossas mensagens? :/");
+            tvHelpNotificacoes.setText("Tem certeza que não quer se esforçar mais? :/");
 
 
         //listeners
@@ -92,18 +108,20 @@ public class ConfiguracoesFragment extends Fragment {
             }
         });
 
-        switchNotificacoes.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        switchDesafioTerca.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
                 if(isChecked){
-                    tvHelpNotificacoes.setText("Habilitado! Nossas mensagens diárias apareceram para você :D ");
+                    tvHelpNotificacoes.setText("Vamos lembrar você de dizer quanto o Espírito Santo é lindão! :D ");
+
 
                 }else{
-                    tvHelpNotificacoes.setText("Não quer ver nossas mensagens? :/");
+                    tvHelpNotificacoes.setText("Tem certeza que não quer se esforçar mais? :/");
                 }
             }
         });
+
 
         etAlarme.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,11 +149,53 @@ public class ConfiguracoesFragment extends Fragment {
         btSalvarConfig.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Configurações foram salvas.", Toast.LENGTH_SHORT).show();
+
+                MDToast.makeText(getContext(),"Configurações foram salvas",Toast.LENGTH_SHORT,MDToast.TYPE_SUCCESS).show();
+
+                editor = sharedPreferences.edit();
+
+                if(switchAlarmeLeitura.isChecked()){
+
+                    String texto = etAlarme.getText().toString();
+                    String x [] = texto.split(":");
+                    int hora = Integer.parseInt(x[0]);
+                    int minutos = Integer.parseInt(x[1]);
+
+                    NotificationScheduler.setReminder(getContext(), AlarmReceiver.class, hora, minutos);
+                }else{
+                    NotificationScheduler.cancelReminder(getContext(), AlarmReceiver.class);
+                }
+
+                if(switchDesafioTerca.isChecked()){
+                    NotificationScheduler.setReminderTuesdayChallenge(context,AlarmReceiverTuesdayChallenge.class);
+                }else{
+                    NotificationScheduler.cancelReminderTuesdayChallenge(context,AlarmReceiverTuesdayChallenge.class);
+                }
+
+                String textoAlarme = etAlarme.getText().toString();
+                boolean alarmeLeitura = switchAlarmeLeitura.isChecked();
+                boolean alarmeDesafioTerca = switchDesafioTerca.isChecked();
+
+                editor.putString("alarme",textoAlarme);
+                editor.putBoolean("alarmeLeitura",alarmeLeitura);
+                editor.putBoolean("alarmeDesafioTerca",alarmeDesafioTerca);
+
+                editor.apply();
+
             }
         });
 
 
         return view;
+    }
+
+    @TargetApi(Build.VERSION_CODES.N)
+    public Locale getCurrentLocale() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            return getResources().getConfiguration().getLocales().get(0);
+        } else {
+            //noinspection deprecation
+            return getResources().getConfiguration().locale;
+        }
     }
 }

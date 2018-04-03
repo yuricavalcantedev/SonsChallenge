@@ -87,7 +87,7 @@ public class DesafioActivity extends AppCompatActivity {
             }
         });
 
-        MDToast.makeText(getBaseContext(),"Obrigado por ser quem você é para mim!", Toast.LENGTH_LONG,MDToast.TYPE_INFO).show();
+//        MDToast.makeText(getBaseContext(),"Obrigado por ser quem você é para mim!", Toast.LENGTH_LONG,MDToast.TYPE_INFO).show();
 
     }
 

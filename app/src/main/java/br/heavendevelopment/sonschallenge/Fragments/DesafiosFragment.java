@@ -14,6 +14,7 @@ import br.heavendevelopment.sonschallenge.Activity.DesafioActivity;
 import br.heavendevelopment.sonschallenge.R;
 
 import static com.valdesekamdem.library.mdtoast.MDToast.LENGTH_LONG;
+import static com.valdesekamdem.library.mdtoast.MDToast.LENGTH_SHORT;
 import static com.valdesekamdem.library.mdtoast.MDToast.TYPE_INFO;
 import static com.valdesekamdem.library.mdtoast.MDToast.TYPE_SUCCESS;
 
@@ -47,7 +48,7 @@ public class DesafiosFragment extends Fragment {
         tv40dias.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MDToast mdToast = MDToast.makeText(getContext(), "Desafio indisponível no momento", LENGTH_LONG, TYPE_INFO);
+                MDToast mdToast = MDToast.makeText(getContext(), "Desafio indisponível no momento", LENGTH_SHORT, TYPE_INFO);
                 mdToast.show();
             }
         });
@@ -57,7 +58,7 @@ public class DesafiosFragment extends Fragment {
         tvDeeper.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MDToast mdToast = MDToast.makeText(getContext(), "Desafio indisponível no momento", LENGTH_LONG, TYPE_INFO);
+                MDToast mdToast = MDToast.makeText(getContext(), "Desafio indisponível no momento", LENGTH_SHORT, TYPE_INFO);
                 mdToast.show();
             }
         });

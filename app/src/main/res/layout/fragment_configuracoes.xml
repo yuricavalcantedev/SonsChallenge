@@ -9,22 +9,23 @@
         android:id="@+id/switch_alarme_leitura"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
+        android:layout_alignParentStart="true"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="11dp"
+        android:checked="true"
         android:text="Alarme de leitura"
-        android:textSize="18dp"
-        android:layout_alignParentStart="true" />
+        android:textSize="18dp" />
 
     <Switch
-        android:id="@+id/switch_notificacoes"
+        android:id="@+id/switch_desafio_terca"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/tv_help_notificacoes_diarias"
+        android:layout_below="@+id/et_alarme"
         android:layout_marginTop="42dp"
         android:checked="true"
-        android:text="Notificações diárias"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:layout_below="@+id/et_alarme"
-        android:layout_alignStart="@+id/tv_help_notificacoes_diarias" />
+        android:text="Notificações desafio terça"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
     <TextView
         android:id="@+id/textView4"
@@ -56,10 +57,10 @@
         android:id="@+id/tv_help_notificacoes_diarias"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/switch_notificacoes"
+        android:layout_below="@+id/switch_desafio_terca"
         android:layout_marginTop="6dp"
         android:layout_toEndOf="@+id/textView4"
-        android:text="Habilite nossas mensagens diárias aparecerem para você :D " />
+        android:text="Vamos lembrar você de dizer quanto o Espírito Santo é lindão! :D " />
 
     <TextView
         android:id="@+id/textView8"
@@ -78,11 +79,12 @@
         android:layout_alignParentEnd="true"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="10dp"
         android:background="@color/colorAccent"
         android:textColor="@android:color/white"
         android:text="Salvar"
-        android:layout_toEndOf="@+id/textView4" />
+        android:layout_toEndOf="@+id/textView4"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>

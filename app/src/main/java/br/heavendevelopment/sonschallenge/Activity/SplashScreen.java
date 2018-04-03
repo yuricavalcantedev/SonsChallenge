@@ -34,8 +34,12 @@ public class SplashScreen extends AppCompatActivity {
         mWaveLoadingView.setProgressValue(desafiosCompletados);
         mWaveLoadingView.startAnimation();
 
-        MDToast.makeText(getBaseContext(),"Oi amor, eu te amo sabia?", Toast.LENGTH_LONG,MDToast.TYPE_INFO).show();
+//        MDToast.makeText(getBaseContext(),"Oi amor, eu te amo sabia?", Toast.LENGTH_LONG,MDToast.TYPE_INFO).show();
 
+        boolean updated = leituraService.checkUpdateDesafios(); //atualizar tabela desafios
+
+        if(!updated)
+            leituraService.updateDesafios();
 
         Handler handle = new Handler();
         handle.postDelayed(new Runnable() {

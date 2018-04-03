@@ -55,8 +55,8 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_layout, DesafiosFragment.newInstance());
         transaction.commit();
-
-        MDToast.makeText(getBaseContext(),"Você é tão especial para mim!", Toast.LENGTH_LONG,MDToast.TYPE_INFO).show();
+//
+//        MDToast.makeText(getBaseContext(),"Você é tão especial para mim!", Toast.LENGTH_LONG,MDToast.TYPE_INFO).show();
 
         //Used to select an item programmatically
         bottomNavigationView.getMenu().getItem(1).setChecked(true);

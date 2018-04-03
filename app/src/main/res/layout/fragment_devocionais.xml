@@ -47,7 +47,7 @@
         android:layout_alignEnd="@+id/lv_devocionais_main"
         android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/lv_devocionais_main"
-        android:layout_marginBottom="9dp"
+        android:layout_marginBottom="10dp"
         android:text="Criar Devocional" />
 
 
